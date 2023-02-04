@@ -1,0 +1,115 @@
+{
+    // Editor Preferences
+    "editor.fontSize": 16,
+    "editor.fontFamily": "Inconsolata, Consolas, 'Courier New', monospace",
+    "editor.formatOnSave": true,
+    "editor.detectIndentation": false,
+    "editor.renderControlCharacters": true,
+    "editor.renderWhitespace": "all",
+    "editor.tabSize": 4,
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 180,
+    // JS
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "javascript.preferences.importModuleSpecifierEnding": "js",
+    "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+    // #去掉代码结尾的分号
+    "prettier.semi": false,
+    // #使用带引号替代双引号
+    "prettier.singleQuote": true,
+    // JSON
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    // Extensions: Emmet
+    "emmet.excludeLanguages": [],
+    "emmet.includeLanguages": {
+        "markdown": "html"
+    },
+    // Extension: Prettier
+    "prettier.requireConfig": true,
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[markdown]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[scss]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    // Extension: ESLint
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true,
+        "source.organizeImports": false,
+    },
+    "eslint.validate": [
+        "vue",
+        "html",
+        "javascript",
+        "typescript",
+        "javascriptreact",
+        "typescriptreact"
+    ],
+    "eslint.alwaysShowStatus": true,
+    "eslint.format.enable": true,
+    "eslint.packageManager": "yarn",
+    // Extension: Vetur
+    // "vetur.experimental.templateInterpolationService": true,
+    "[vue]": {
+        "editor.defaultFormatter": "octref.vetur"
+    },
+    "vetur.validation.template": false,
+    "vetur.format.options.tabSize": 4,
+    "vetur.format.scriptInitialIndent": true,
+    "vetur.format.styleInitialIndent": true,
+    "vetur.format.defaultFormatter.js": "prettier",
+    "vetur.format.defaultFormatter.ts": "prettier",
+    "vetur.format.defaultFormatter.html": "js-beautify-html",
+    "vetur.format.defaultFormatterOptions": {
+        // "prettier": {
+        //     "semi": true,
+        //     "singleQuote": true,
+        //     "bracketSpacing": true
+        // },
+        // "prettier-eslint": {
+        //     "semi": true,
+        //     "singleQuote": true,
+        //     "wrapAttributes": false
+        // },
+        "js-beautify-html": {
+            "semi": false,
+            "singleQuote": false,
+            "sortAttributes": false,
+            // - auto: 仅在超出行长度时才对属性进行换行。
+            // - force: 对除第一个属性外的其他每个属性进行换行。
+            // - force-aligned: 对除第一个属性外的其他每个属性进行换行，并保持对齐。
+            // - force-expand-multiline: 对每个属性进行换行。
+            // - aligned-multiple: 当超出折行长度时，将属性进行垂直对齐。
+            "wrap_attributes": "auto",
+            "wrap_line_length": 999
+        },
+        "prettyhtml": {
+            "semi": false,
+            "singleQuote": false,
+            "sortAttributes": false,
+            "wrap_attributes": "auto",
+            "wrap_line_length": 999
+        }
+    },
+    // Extension: npm
+    "npm.packageManager": "yarn",
+    "cSpell.words": [
+        "axios",
+        "refo",
+        "Unfiled"
+    ]
+}

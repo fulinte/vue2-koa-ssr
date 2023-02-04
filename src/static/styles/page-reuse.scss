@@ -1,0 +1,58 @@
+@import "./variable.scss";
+
+body {
+    font-size: $font-size-large;
+}
+
+.app-container {
+    width: 100%;
+}
+
+
+// 大于可视区域
+@media screen and (min-width: 1201px) {
+    body {
+        font-size: $font-size-large;
+    }
+
+    .substance-within-container {
+        width: 80%;
+        margin: 0rem auto;
+    }
+}
+
+// 大于可视区域
+@media screen and (min-width: 1800px) {
+    body {
+        font-size: $font-size-big;
+    }
+    
+    .substance-within-container {
+        width: 80%;
+        margin: 0rem auto;
+    }
+}
+
+// 大于可视区域
+// @media screen and (min-width: 1920px) {
+//     body {
+//         font-size: $font-size-big;
+//     }
+    
+//     .substance-within-container {
+//         max-width: 1600px;
+//         margin: 0rem auto;
+//     }
+// }
+
+// 小于可视区域
+@media screen and (max-width: 1200px) {
+    body {
+        font-size: $font-size-small;
+    }
+
+    .substance-within-container {
+        min-width: 1200px;
+        margin: 0rem auto;
+    }
+}
