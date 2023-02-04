@@ -1,5 +1,6 @@
 var Path = require('path'),
     MFS = require('memory-fs'),
+    KoaServerHttpProxy = require('koa-server-http-proxy'),
     Webpack = require('webpack'),
     WebpackDevMiddleware = require('koa-webpack-dev-middleware'),
     WebpackHotMiddleware = require('koa-webpack-hot-middleware'),
@@ -13,12 +14,10 @@ module.exports = function developmentServerHandler(app, template, callback) {
         clientManifest = null,
         update = () => {
             if (serverBundle && clientManifest) {
-                callback(
-                    serverBundle,
-                    {
-                        template, clientManifest
-                    }
-                );
+                callback(serverBundle, {
+                    template,
+                    clientManifest
+                });
             }
         };
 
@@ -27,10 +26,7 @@ module.exports = function developmentServerHandler(app, template, callback) {
     clientConfig.mode = 'development';
     clientConfig.entry.client = ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=3000&reload=true', clientConfig.entry.client];
     clientConfig.output.filename = '[name].js';
-    clientConfig.plugins.push(
-        new Webpack.HotModuleReplacementPlugin(),
-        new Webpack.NoEmitOnErrorsPlugin()
-    );
+    clientConfig.plugins.push(new Webpack.HotModuleReplacementPlugin(), new Webpack.NoEmitOnErrorsPlugin());
 
     // webpack config
     const clientCompiler = Webpack(clientConfig);
@@ -43,13 +39,24 @@ module.exports = function developmentServerHandler(app, template, callback) {
             modules: false
         }
     });
+    // proxy
+    app.use(
+        KoaServerHttpProxy('/api/work/read', {
+            target: 'http://127.0.0.1:8080',
+            pathRewrite: {
+                // => http://127.0.0.1:8080/work/read
+                '^/api': '/'
+            },
+            changeOrigin: true
+        })
+    );
 
     app.use(Convert(devMiddleware));
     // hot update
-    clientCompiler.plugin('done', stats => {
+    clientCompiler.plugin('done', (stats) => {
         stats = stats.toJson();
-        stats.errors.forEach(err => console.error(err));
-        stats.warnings.forEach(err => console.warn(err));
+        stats.errors.forEach((err) => console.error(err));
+        stats.warnings.forEach((err) => console.warn(err));
         if (stats.errors.length) return;
 
         clientManifest = JSON.parse(readFileHandler(devMiddleware.fileSystem, 'vue-ssr-client-manifest.json'));
@@ -74,7 +81,7 @@ module.exports = function developmentServerHandler(app, template, callback) {
         if (err) throw err;
         stats = stats.toJson();
         if (stats.errors.length) return;
-        
+
         serverBundle = JSON.parse(readFileHandler(mfs, 'vue-ssr-server-bundle.json'));
         update();
 

@@ -23,6 +23,8 @@ var { state, list } = await this.$axios.asyncRequestInterface('/interface-name',
 if (state) return list;
 ```
 
+**配置代理转发** config/webpack.server.development.config.js ，解决接口请求跨域，方便开发工作。
+
 # 是什么 ？
 
 一个基于 vue2 + koa 的单入口 SSR 脚手架。集成的功能应该可以让你快速开始开发业务页面。
