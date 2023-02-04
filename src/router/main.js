@@ -90,7 +90,7 @@ class Router {
             return cacheResult;
         } else {
             let { state, list } = await this.RefAxios.asyncRequestInterface('/interface/route-indexes', {}, 'get', {
-                autoFailOpr: false
+                autoPrompt: false
             });
 
             if (state) {
